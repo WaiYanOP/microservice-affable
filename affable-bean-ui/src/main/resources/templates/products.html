@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="layouts/masterlayout :: layouts(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<main role="main">
+  <div class="container mt-3 p-3">
+    <div class="row">
+      <div class="col-md-4 mt-3 text-center p-5">
+        <div class="d-flex flex-md-column">
+          <a th:href="@{'/ui/product/category?id=1'}" class="bg-info text-white py-3 mb-3 px-5 rounded shadow text-decoration-none">Diary</a>
+          <a th:href="@{'/ui/product/category?id=2'}" class="bg-info text-white py-3 mb-3 px-5 rounded shadow text-decoration-none">Meat</a>
+          <a th:href="@{'/ui/product/category?id=3'}" class="bg-info text-white py-3 mb-3 px-5 rounded shadow text-decoration-none">Bakery</a>
+          <a th:href="@{'/ui/product/category?id=4'}" class="bg-info text-white py-3 mb-3 px-5 rounded shadow text-decoration-none">Fruit &#38; Vegetable</a>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card custom-bg shadow rounded">
+          <div class="card-header">
+            <h3>Products</h3>
+          </div>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${products}">
+              <td><img th:src="@{'/bootstrap/images/products/' + ${p.description} + '.png'}"
+                       class="img-thumbnail" alt="image"></td>
+              <td th:text="${p.description}"></td>
+              <td th:text="${'$' + p.price}"></td>
+              <td><a th:href="@{'/ui/product/purchase?id=' + ${p.id}}" class="btn btn-outline-success">Purchase</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
